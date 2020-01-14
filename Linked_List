@@ -1,8 +1,8 @@
 #define a Node class, used as a basic element in LinkedList
 class Node:
-    def __init__(self, val = None, next = None):
-        self.val = val
-        self.next = next
+    def __init__(self, value = None, nextone = None):
+        self.val = value
+        self.next = nextone
 
 
 #define class LinkedList
@@ -86,3 +86,19 @@ class LinkedList:
             nextone = temp.next
             temp.next = newnode
             newnode.next = nextone
+        
+    def popelement(self):
+        if self.start_point == None:
+            return 'cannot delete because it is empty linked list'
+        else:
+            temp = self.start_point
+            position = 0
+            length = self.getlength()
+            while position < length - 2:
+                temp = temp.next
+                position += 1
+            temp.next = None
+            
+            
+            
+            
