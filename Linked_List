@@ -1,0 +1,32 @@
+#define a Node class, used as a basic element in LinkedList
+class Node:
+    def __init__(self, val = None, next = None):
+        self.val = val
+        self.next = next
+
+#define class LinkedList
+class LinkedList:
+    def __init__(self):
+        self.start_point = None
+    
+    def addelement(self, data):
+        newnode = Node(data)
+        
+        if self.start_point is None:
+            self.start_point = newnode
+        else:
+            temp = self.start_point
+            while (temp.next is not None):
+                temp = temp.next
+            temp.next = newnode
+        
+    
+    def printelement(self):
+        if self.start_point is None:
+            print('Null LinkedList')
+        else:
+            temp = self.start_point
+            while temp is not None:
+                print(temp.val, ' ')
+                temp = temp.next
+        
