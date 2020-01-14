@@ -4,8 +4,10 @@ class Node:
         self.val = val
         self.next = next
 
+
 #define class LinkedList
 class LinkedList:
+
     def __init__(self):
         self.start_point = None
     
@@ -23,10 +25,64 @@ class LinkedList:
     
     def printelement(self):
         if self.start_point is None:
-            print('Null LinkedList')
+            print('Empty LinkedList')
         else:
             temp = self.start_point
             while temp is not None:
                 print(temp.val, ' ')
                 temp = temp.next
-        
+    
+    def getlength(self):
+        if self.start_point is None:
+            return 0
+        else:
+            temp = self.start_point
+            length = 0
+            while temp is not None:
+                length += 1
+                temp = temp.next
+            return length
+    
+    def getNthelement(self, n):
+        if self.start_point is None:
+            return 'Empty LinkedList'
+        else:
+            if n > self.getlength():
+                return 'out of index'
+            else:
+                temp = self.start_point
+                length = 0
+                while (temp is not None) and (length < n - 1):
+                    length += 1
+                    temp = temp.next
+                return temp.val
+            
+    def findelement(self, target):
+        if self.start_point is None:
+            return False
+        else:
+            temp = self.start_point
+            position = 0
+            while (temp is not None):
+                if temp.val == target:
+                    return position+1
+                else:
+                    position += 1
+                    temp = temp.next
+            return False
+    
+    def add_at(self, data, position):
+        newnode = Node(data)
+        if position < 0:
+            return 'invalid position'
+        elif position == 0:
+            self.start_point = newnode
+        else:
+            current = 0
+            temp = self.start_point
+            while current < position - 1:
+                temp = temp.next
+                current += 1
+            nextone = temp.next
+            temp.next = newnode
+            newnode.next = nextone
